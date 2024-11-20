@@ -31,18 +31,7 @@ jobs:
       - name: Change working directory to zjazd3
         run: cd zjazd3
 
-      # 4. Install dependencies
-      - name: Install dependencies
-        working-directory: zjazd3
-        run: |
-          if [ -f requirements.txt ]; then
-            python -m pip install --upgrade pip
-            pip install -r requirements.txt
-          else
-            echo "No requirements.txt found, skipping dependency installation."
-          fi
-
-      # 5. Run tests
+      # 4. Run tests
       - name: Run tests
         working-directory: zjazd3
         run: python -m unittest discover -s tests -p "*.py"
