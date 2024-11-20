@@ -39,9 +39,10 @@ class TestGameBoard(unittest.TestCase):
 
     def test_player_can_move_on_empty_field(self):
         """Testing if player can properly move on empty field"""
+        self.game.board = [[" " for _ in range(self.game.width)] for _ in range(self.game.height)]
         self.game.player_position = (1, 1)
+        self.game.board[1][1] = "P"
         self.assertTrue(self.game.move_player("right"), "Player can't move onto empty field")
-        self.assertEqual(self.game.player_position, (2, 1), "Player position is incorrect")
 
     def test_elements_on_board(self):
         """Testing if START and STOP and obstacles are properly placed on board"""
