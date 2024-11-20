@@ -17,15 +17,23 @@ jobs:
         python-version: [3.8]
 
     steps:
+      # 1. Checkout the code
       - name: Checkout code
         uses: actions/checkout@v3
 
+      # 2. Set up Python
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
 
+      # 3. Change directory to zjazd3
+      - name: Change working directory to zjazd3
+        run: cd zjazd3
+
+      # 4. Install dependencies
       - name: Install dependencies
+        working-directory: zjazd3
         run: |
           if [ -f requirements.txt ]; then
             python -m pip install --upgrade pip
@@ -34,5 +42,7 @@ jobs:
             echo "No requirements.txt found, skipping dependency installation."
           fi
 
+      # 5. Run tests
       - name: Run tests
+        working-directory: zjazd3
         run: python -m unittest discover -s tests -p "*.py"
